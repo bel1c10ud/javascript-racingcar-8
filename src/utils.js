@@ -12,6 +12,13 @@ export async function getInputAsync() {
 
     return [carsString, countString];
   } catch (error) {
-    
+
   }
+}
+
+export function parseInputs(carsString, countString) {
+  const cars = carsString.split(",").map((el) => el.trim());
+  const count = Number(countString);
+
+  return [cars, count];
 }
