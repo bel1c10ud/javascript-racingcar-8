@@ -6,6 +6,8 @@ import {
   printEmptyLine,
   printResultHeader,
   printStatus,
+  printWinners,
+  findWinners,
 } from "./utils.js";
 
 class App {
@@ -25,6 +27,10 @@ class App {
       printStatus(status);
       printEmptyLine();
     }
+
+    const winners = findWinners(status);
+
+    printWinners(winners);
   }
 }
 

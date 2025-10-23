@@ -58,3 +58,24 @@ export function printStatus(status) {
     Console.print(`${car} : ${"-".repeat(step)}`)
   );
 }
+
+export function printWinners(winners) {
+  Console.print(`최종 우승자 : ${winners.join(", ")}`);
+}
+
+export function findWinners(status) {
+  let maxStep = 0;
+  let winners = [];
+
+  Object.entries(status).forEach(([car, step]) => {
+    if (step === maxStep) {
+      winners.push(car);
+    }
+    if (step > maxStep) {
+      maxStep = step;
+      winners = [car];
+    }
+  });
+
+  return winners;
+}
