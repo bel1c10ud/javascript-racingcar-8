@@ -1,6 +1,8 @@
 import {
-  getInputAsync,
-  parseInputs,
+  getCarsAsync,
+  parseCars,
+  getCountAsync,
+  parseCount,
   initRace,
   race,
   printEmptyLine,
@@ -12,8 +14,11 @@ import {
 
 class App {
   async run() {
-    const [carsString, countString] = await getInputAsync();
-    const [cars, count] = parseInputs(carsString, countString);
+    const carsString = await getCarsAsync();
+    const cars = parseCars(carsString);
+
+    const countString = await getCountAsync();
+    const count = parseCount(countString);
 
     printEmptyLine();
     printResultHeader();
