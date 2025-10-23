@@ -12,13 +12,46 @@ export async function getInputAsync() {
 
     return [carsString, countString];
   } catch (error) {
-
+    throw new Error("[ERROR] 사용자 입력을 읽는 중 오류가 발생했습니다.");
   }
 }
 
 export function parseInputs(carsString, countString) {
-  const cars = carsString.split(",").map((el) => el.trim());
+  if (carsString.length === 0 || carsString.trim() === "") {
+    throw new Error("[ERROR] 자동차 이름이 입력되지 않았습니다.");
+  }
+
+  if (countString.length === 0 || countString.trim() === "") {
+    throw new Error("[ERROR] 시도 횟수가 입력되지 않았습니다.");
+  }
+
+  const cars = carsString.split(",");
+
+  if (cars.some((car) => car.length === 0 || car.trim() === "")) {
+    throw new Error("[ERROR] 자동차 이름은 1자 이상이어야 합니다.");
+  }
+
+  if (cars.some((car) => car.length > 5)) {
+    throw new Error("[ERROR] 자동차 이름은 5자를 초과할 수 없습니다.");
+  }
+
+  if (cars.length !== new Set(cars).size) {
+    throw new Error("[ERROR] 중복된 자동차 이름이 있습니다.");
+  }
+
   const count = Number(countString);
+
+  if (isNaN(count)) {
+    throw new Error("[ERROR] 시도 횟수는 숫자만 입력할 수 있습니다.");
+  }
+
+  if (count % 1 !== 0) {
+    throw new Error("[ERROR] 시도 횟수는 소수점 없는 숫자여야 합니다.");
+  }
+
+  if (count < 1) {
+    throw new Error("[ERROR] 시도 횟수는 1회 이상이어야 합니다.");
+  }
 
   return [cars, count];
 }
