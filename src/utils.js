@@ -1,4 +1,4 @@
-import { Console } from "@woowacourse/mission-utils";
+import { Console, MissionUtils } from "@woowacourse/mission-utils";
 
 export async function getInputAsync() {
   try {
@@ -21,4 +21,40 @@ export function parseInputs(carsString, countString) {
   const count = Number(countString);
 
   return [cars, count];
+}
+
+export function initRace(cars) {
+  const status = {};
+
+  cars.forEach((car) => {
+    status[car] = 0;
+  });
+
+  return status;
+}
+
+export function race(prevStatus) {
+  const newStatus = Object.assign({}, prevStatus);
+
+  Object.keys(prevStatus).forEach((car) => {
+    const rand = MissionUtils.Random.pickNumberInRange(0, 9);
+
+    if (rand >= 4) newStatus[car]++;
+  });
+
+  return newStatus;
+}
+
+export function printResultHeader() {
+  Console.print(`실행 결과`);
+}
+
+export function printEmptyLine() {
+  Console.print(``);
+}
+
+export function printStatus(status) {
+  Object.entries(status).forEach(([car, step]) =>
+    Console.print(`${car} : ${"-".repeat(step)}`)
+  );
 }
