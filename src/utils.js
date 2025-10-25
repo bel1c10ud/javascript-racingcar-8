@@ -25,7 +25,7 @@ export async function getCountAsync() {
 }
 
 export function parseCars(carsString) {
-  if (carsString.length === 0 || carsString.trim() === "") {
+  if (!carsString || carsString.trim() === "") {
     throw new Error("[ERROR] 자동차 이름이 입력되지 않았습니다.");
   }
 
@@ -45,7 +45,7 @@ export function parseCars(carsString) {
 }
 
 export function parseCount(countString) {
-  if (countString.length === 0 || countString.trim() === "") {
+  if (!countString || countString.trim() === "") {
     throw new Error("[ERROR] 시도 횟수가 입력되지 않았습니다.");
   }
 
