@@ -1,4 +1,4 @@
-import ForwardRule from "../utils/ForwardRule";
+import ForwardRule from "../utils/ForwardRule.js";
 
 export default class Race {
   #cars;
