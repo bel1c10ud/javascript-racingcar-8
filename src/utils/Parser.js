@@ -4,6 +4,7 @@ export default class Parser {
   static parseNames(namesStr) {
     const names = namesStr.split(",");
 
+    Validator.validateUnique(names);
     names.forEach((name) => {
       Validator.validateLength(name);
     });

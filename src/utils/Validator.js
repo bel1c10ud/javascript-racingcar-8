@@ -1,4 +1,10 @@
 export default class Validator {
+  static validateUnique(names) {
+    if (new Set([...names]).size !== names.length) {
+      throw new Error("[ERROR] 자동차 이름은 중복될 수 없습니다.");
+    }
+  }
+
   static validateLength(name) {
     if (name.length === 0) {
       throw new Error("[ERROR] 자동차 이름은 비어있을 수 없습니다.");
